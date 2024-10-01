@@ -218,7 +218,7 @@ def get_model_overheads_for_intervals(idx_pairs, keys, device, relative=False):
     _, mean_labels, std_labels = normalize_data(labels)
 
     model = create_model(NET_CONFIG, NUM_EXPERTS, DROPOUT_PROB, device)
-    weights = handle_weights(torch.load(f'weights/best-{CASE}.pth'.replace("_sampled", ""), weights_only=True))
+    weights = handle_weights(torch.load(f'weights/best-{CASE}.pth'.replace("_sampled", ""), weights_only=True, map_location=torch.device(device)))
     model.load_state_dict(weights)
     model.eval()
     model.to(device)
@@ -283,8 +283,9 @@ def evaluate_overhead():
              'lognormal3', 'lognormal4', 'lognormal5', 'lognormal6',
              'trans_sampled',
              'bureau_sampled_250k', 'bureau_sampled']
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print("Available GPU: ", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU available")
+    device = torch.device("cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu"))
+    print("Available GPU: ", torch.cuda.get_device_name(0) if torch.cuda.is_available()
+    else("Apple Chip Acceleration" if torch.backends.mps.is_available() else"No GPU available"))
     for relative in [True, False]:
         point_results = {}
         interval_results = {}

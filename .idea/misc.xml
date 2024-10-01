@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.9 (fmi)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9 (fmi)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="idx" project-jdk-type="Python SDK" />
 </project>
