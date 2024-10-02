@@ -22,3 +22,4 @@ Run these files to draw charts for overhead comparison and max error trend with 
 
 ## 4 Execution sequence
 two index generation files (3.1) -> overhead evalution (3.2) -> draw charts (3.3)
+Please create three directories in the project directory, which are `crypt`, `noise` and `overhead`.
